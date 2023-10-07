@@ -1,0 +1,6 @@
+Tests: require
+Depends: node-source-map, nodejs (>= 6)
+
+Tests: runtestsuite
+Depends: node-source-map, nodejs (>= 6)
+

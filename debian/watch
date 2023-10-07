@@ -1,0 +1,6 @@
+version=4
+opts=\
+repacksuffix=+dfsg,\
+dversionmangle=s/\+dfsg//,\
+filenamemangle=s/.*\/v?([\d\.-]+)\.tar\.gz/node-source-map-$1.tar.gz/ \
+ https://github.com/mozilla/source-map/tags .*/archive/v?(\d+(:?[.]\d+)*).tar.gz
