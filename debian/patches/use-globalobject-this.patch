@@ -1,0 +1,29 @@
+https://github.com/webpack/webpack/issues/6525
+https://github.com/lzq4047/element/commit/ed176ac11758a32684492457b71002b8f47098f5
+
+--- a/webpack.config.js
++++ b/webpack.config.js
+@@ -14,6 +14,7 @@
+       filename: "source-map.js",
+       library: "sourceMap",
+       libraryTarget: "umd",
++      globalObject: 'typeof self !== \'undefined\' ? self : this'
+     },
+   },
+ 
+@@ -25,6 +26,7 @@
+       filename: "source-map.debug.js",
+       library: "sourceMap",
+       libraryTarget: "umd",
++      globalObject: 'typeof self !== \'undefined\' ? self : this'
+     },
+   },
+ 
+@@ -36,6 +38,7 @@
+       filename: "source-map.min.js",
+       library: "sourceMap",
+       libraryTarget: "umd",
++      globalObject: 'typeof self !== \'undefined\' ? self : this'
+     },
+     optimization: {
+      minimizer: [

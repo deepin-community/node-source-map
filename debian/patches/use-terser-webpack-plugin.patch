@@ -1,0 +1,51 @@
+Adapt to use terser-webpack-plugin and skip devtool option
+(probably relevant only for development environment)
+
+--- a/webpack.config.js
++++ b/webpack.config.js
+@@ -2,7 +2,7 @@
+ var fs = require("fs");
+ var path = require("path");
+ var webpack = require("webpack");
+-
++var TerserPlugin = require('terser-webpack-plugin');
+ var distDir = path.join(__dirname, "dist");
+ 
+ module.exports = [
+@@ -26,7 +26,6 @@
+       library: "sourceMap",
+       libraryTarget: "umd",
+     },
+-    devtool: "#inline-source-map"
+   },
+ 
+   // Minified build.
+@@ -38,12 +37,15 @@
+       library: "sourceMap",
+       libraryTarget: "umd",
+     },
+-    plugins: [
+-      new webpack.optimize.UglifyJsPlugin({
+-        sourceMap: true
+-      })
+-    ],
+-    devtool: "#source-map"
++    optimization: {
++     minimizer: [
++        new TerserPlugin({
++        terserOptions: {
++          sourceMap: true
++        }
++        })
++      ],
++    }
+   }
+ ];
+ 
+@@ -79,6 +81,5 @@
+     plugins: [
+       new BannerPlugin(run_test.toString() + "\n\n")
+     ],
+-    devtool: "#inline-source-map"
+   });
+ });

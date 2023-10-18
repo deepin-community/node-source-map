@@ -1,4 +1,20 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
 %:
 	dh $@
+
+override_dh_auto_build:
+	mkdir -p dist
+	webpack --mode development
+#	Inspired by https://github.com/lzq4047/element/commit/ed176ac11758a32684492457b71002b8f47098f5
+#	perl -i -pe 's/\bself\b/window.self/g' `find dist -type f`
+
+override_dh_auto_clean:
+	rm -rf dist node_modules/.cache
+
+override_dh_installdocs:
+	dh_installdocs --link-doc=libjs-source-map

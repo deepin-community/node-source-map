@@ -1,15 +1,41 @@
-Source: template-repository
-Section: unknown
+Source: node-source-map
+Section: javascript
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Yadd <yadd@debian.org>, Julien Puydt <jpuydt@debian.org>
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , webpack (>= 5.0~)
+Standards-Version: 4.6.1
+Homepage: https://github.com/mozilla/source-map
+Vcs-Git: https://salsa.debian.org/js-team/node-source-map.git
+Vcs-Browser: https://salsa.debian.org/js-team/node-source-map
+Testsuite: autopkgtest-pkg-nodejs
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: node-source-map
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+ , libjs-source-map (= ${binary:Version})
+Provides: node-types-source-map (= ${source:Version})
+Description: Mozilla source map generator and consumer - Node.js module
+ Mozilla implementation of source map generator and consumer, for source
+ maps written in the Asynchronous Module Definition format.
+ .
+ Source maps provide a language-agnostic way to compile back production
+ code to the original source code.
+ .
+ Node.js is an event-based server-side JavaScript engine.
+
+Package: libjs-source-map
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Recommends: javascript-common
+Description: Mozilla source map generator and consumer - JavaScript library
+ Mozilla implementation of source map generator and consumer, for source
+ maps written in the Asynchronous Module Definition format.
+ .
+ Source maps provide a language-agnostic way to compile back production
+ code to the original source code.
