@@ -1,0 +1,4 @@
+001-fix-webpackg-file.patch
+002-add-types.patch
+use-terser-webpack-plugin.patch
+use-globalobject-this.patch
